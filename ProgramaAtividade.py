@@ -1,5 +1,5 @@
 def menu():
-    print(f"\n-----------------Progama de Leitura das pressões hidrodinâmicas-----------------\nDeseja iniciar o programa?\n1-Para iniciar\n2-Para fechar")
+    print(f"\n-----------------Progama de Leitura das pressões hidrodinâmicas-----------------\nDeseja iniciar o programa?\n1-Para iniciar\n2-Para fechar\n3-Para visualizar os integrantes")
     inicio=int(input(f"\n--> Digite aqui o comando desejado: "))
     match inicio:
         case 1:
@@ -7,6 +7,12 @@ def menu():
         case 2:
             print(f"\nFechando programa...")
             return False
+        case 3:
+            print(f"\nPedro Henrique Sanches Agatti Godoy\nJúlia Andrade Guarnieri\nLarissa Souza Quito Sampaio\nThomas Krause Arena")
+            retornar = int(input(f"\nDigite qualquer coisa pra retornar"))
+            match retornar:
+                case _:
+                    rodando=menu()
         case _:
             print(f"\n!!!!Comando inválido!!!!\nRetornando ao início...")
             return menu()
@@ -78,4 +84,6 @@ while rodando:
     print(f"\n-->A menor pressão registrada foi: {menor:.2f}")
     print(f"\n-->Porcentagem de leituras que ficaram na Zona Verde foi: {porcentagem:.2f}%")
     if travou:
-        print(f"\n-->Porcentagem de leituras realizadas antes do travamendo do Escoamento foi: {porcentagem2}%")
+        print(f"\n-->Porcentagem de leituras realizadas antes do travamento do Escoamento foi: {porcentagem2}%")
+    else:
+        rodando=menu()
