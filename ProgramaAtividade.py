@@ -9,7 +9,7 @@ def menu():
             return False
         case 3:
             print(f"\nPedro Henrique Sanches Agatti Godoy\nJúlia Andrade Guarnieri\nLarissa Souza Quito Sampaio\nThomas Krause Arena")
-            retornar = int(input(f"\nDigite qualquer coisa pra retornar"))
+            retornar = input(f"\nDigite qualquer coisa pra retornar")
             match retornar:
                 case _:
                     rodando=menu()
