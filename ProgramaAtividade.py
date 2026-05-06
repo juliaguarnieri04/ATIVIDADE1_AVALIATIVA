@@ -1,3 +1,13 @@
+def barra_progresso_simples(mensagem):
+    """Simula uma barra de progresso usando apenas loops e espaços."""
+    print(f"\n{mensagem}")
+    for i in range(1, 11):
+        barra = "#" * i + "-" * (10 - i)
+        print(f"  [{barra}] {i*10}%", end="\r")
+        for _ in range(2000000): 
+            pass
+    print("\n" + "-" * 70)
+
 def menu():
     print("\n" +"-" * 70)
     print("SEUC-4 — Sistema de Escoamento de Unidades de Carga")
@@ -12,34 +22,32 @@ def menu():
     inicio = int(input("--> Digite o comando desejado: "))
     match inicio:
         case 1:
+            barra_progresso_simples("Sincronizando com os sensores da Unidade Delta-9...")
             return True
         case 2:
             print(f"\nEncerrando o SEUC-4. Até o próximo turno!")
             return False
         case 3:
-            print(f"\nJúlia Andrade Guarnieri\nLarissa Souza Quito Sampaio\nPedro Henrique Sanches Agatti Godoy\nThomas Krause Arena")
-            retornar = input(f"\nDigite qualquer coisa pra retornar ao menu:    ")
-            match retornar:
-                case _:
-                    return menu()
-        case _:
-            print(f"\n!!!!Comando inválido!!!!\nRetornando ao menu...")
+            print(f"\nJúlia Andrade Guarnieri\nLarissa Souza Quito Sampaio\nPedro Henrique Sanches Agatti Godoy")
+            input(f"\nPressione qualquer tecla para retornar ao menu...")
             return menu()
-
+        case _:
+            print(f"\n!!!! Comando inválido !!!!\nRetornando ao menu...")
+            return menu()
 
 def iniciar_turno():
     print("\n" + "-" * 70)
-    numh=int(input("\n~ Quantidade de leituras que serão realizadas no seu turno: "))
+    numh = int(input("\n~ Quantidade de leituras que serão realizadas no seu turno: "))
 
     if numh <= 0 :
         print("\n !!! Número de leitura deve ser maior que zero !!!")
         return
     
-    soma= 0
-    travou= False
-    contvermelho=0
-    contverde=0
-    leituras=0
+    soma = 0
+    travou = False
+    contvermelho = 0
+    contverde = 0
+    leituras = 0
     menor = None
     maior = None
 
@@ -47,28 +55,28 @@ def iniciar_turno():
     print(f"  {'Nº':>5}  | {'Pressão Ajustada':>15} | {'Classificação'}")
     print("-" * 70)
     
-    for i in range(1,numh + 1):
+    for i in range(1, numh + 1):
         upc_bruta = float(input(f"\n  Pressão hidrodinâmica (leitura {i}/{numh}): "))
 
         if upc_bruta > 150:
-            upc= upc_bruta * 1.08
+            upc = upc_bruta * 1.08
         else:
-            upc=upc_bruta * 0.96
+            upc = upc_bruta * 0.96
 
         if i == 1:
             maior = upc
             menor = upc
         
         if upc > maior:
-            maior=upc
+            maior = upc
 
         if upc < menor:
-            menor=upc
+            menor = upc
         
         if 120 <= upc <= 180:
             zona = "VERDE"
             print(f"  Leitura {i:>3} | {upc:>8.2f} UPC | Zona VERDE  (Estável)")
-        elif 180 < upc <=250:        
+        elif 180 < upc <= 250:        
             zona = "AMARELA"
             print(f"  Leitura {i:>3} | {upc:>8.2f} UPC | Zona AMARELA  (Oscilação)")
         elif upc > 250:
@@ -98,6 +106,8 @@ def iniciar_turno():
             travou = True
             break
     
+    barra_progresso_simples("Compilando dados e gerando relatório final...")
+
     if leituras > 0:
         media = soma / leituras
         pct_verde = (contverde / leituras) * 100
@@ -125,6 +135,7 @@ def iniciar_turno():
     
     print("\n" + "=" * 70)
 
+# Fluxo Principal
 rodando = menu()
 
 while rodando:
