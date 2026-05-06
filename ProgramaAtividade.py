@@ -1,8 +1,7 @@
 def barra_progresso_simples(mensagem):
-    """Simula uma barra de progresso usando apenas loops e espaços."""
     print(f"\n{mensagem}")
     for i in range(1, 11):
-        barra = "#" * i + "-" * (10 - i)
+        barra = "█" * i + "-" * (10 - i)
         print(f"  [{barra}] {i*10}%", end="\r")
         for _ in range(2000000): 
             pass
